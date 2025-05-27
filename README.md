@@ -1,7 +1,3 @@
-Certainly! Here’s a rewritten version of your README.md section for AutoSentinel-Improved, incorporating all your specified improvements. This is designed to be copy-paste ready and modular, so you can include or adapt the parts you want.
-
----
-
 # AutoSentinel-Improved
 
 **Advanced Cybersecurity System with Improved Vision Transformer (50.9% accuracy), Multi-Agent Reinforcement Learning, and LLM Integration for Autonomous Threat Detection**
@@ -159,12 +155,6 @@ We welcome contributions! Please follow these guidelines:
 
 ---
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## Links & Resources
 
 - [CICIDS2017 Dataset](https://www.unb.ca/cic/datasets/malmem-2022.html)
@@ -202,5 +192,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ for cybersecurity professionals and researchers**
 
 ---
-
-Let me know if you want this tailored to a specific section or if you’d like help generating visuals or more usage examples!
