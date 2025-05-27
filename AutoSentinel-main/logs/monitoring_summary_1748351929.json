@@ -1,0 +1,29 @@
+{
+  "monitoring_session": {
+    "total_incidents": 36,
+    "malicious_detected": 30,
+    "benign_traffic": 6,
+    "avg_processing_time": 0.00015864107343885634,
+    "system_metrics": {
+      "threats_detected": 30,
+      "responses_executed": 100,
+      "reports_generated": 36,
+      "system_uptime": 1748351806.733715
+    }
+  },
+  "threat_breakdown": {
+    "Web Attack - Brute Force": 3,
+    "PortScan": 4,
+    "Web Attack - XSS": 5,
+    "Bot": 3,
+    "Infiltration": 4,
+    "BENIGN": 6,
+    "Web Attack - Sql Injection": 6,
+    "DDoS": 5
+  },
+  "response_effectiveness": {
+    "total_actions": 108,
+    "successful_actions": 100,
+    "effectiveness_rate": 0.9259259259259259
+  }
+}

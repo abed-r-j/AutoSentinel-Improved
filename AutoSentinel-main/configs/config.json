@@ -1,0 +1,75 @@
+{
+  "project": {
+    "name": "AutoSentinel",
+    "version": "1.0.0",
+    "description": "Autonomous Multi-Agent AI Cybersecurity Orchestrator",
+    "authors": [
+      "AutoSentinel Team"
+    ],
+    "license": "MIT"
+  },
+  "data": {
+    "raw_data_path": "data/raw",
+    "processed_data_path": "data/processed",
+    "batch_size": 32,
+    "validation_split": 0.2,
+    "test_split": 0.1,
+    "num_workers": 4
+  },
+  "models": {
+    "vit": {
+      "image_size": 224,
+      "patch_size": 16,
+      "num_classes": 8,
+      "dim": 768,
+      "depth": 12,
+      "heads": 12,
+      "mlp_dim": 3072,
+      "dropout": 0.1,
+      "emb_dropout": 0.1
+    },
+    "marl": {
+      "num_agents": 3,
+      "state_dim": 100,
+      "action_dim": 6,
+      "learning_rate": 0.001,
+      "gamma": 0.99,
+      "epsilon": 0.1,
+      "epsilon_decay": 0.995,
+      "min_epsilon": 0.01,
+      "memory_size": 10000
+    },
+    "threat_classifier": {
+      "input_dim": 18,
+      "hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "num_classes": 8,
+      "dropout": 0.3,
+      "activation": "relu"
+    }
+  },
+  "training": {
+    "epochs": 100,
+    "early_stopping_patience": 10,
+    "learning_rate": 0.0001,
+    "optimizer": "Adam",
+    "loss_function": "CrossEntropyLoss",
+    "scheduler": "StepLR",
+    "step_size": 30,
+    "gamma": 0.1
+  },
+  "evaluation": {
+    "metrics": [
+      "accuracy",
+      "precision",
+      "recall",
+      "f1",
+      "confusion_matrix"
+    ],
+    "save_predictions": true,
+    "save_model_checkpoints": true
+  }
+}

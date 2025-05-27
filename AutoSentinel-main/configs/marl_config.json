@@ -1,0 +1,67 @@
+{
+  "environment": {
+    "name": "CyberSecurityMARL",
+    "state_size": 100,
+    "action_size": 6,
+    "num_agents": 3,
+    "max_episode_steps": 100,
+    "reward_scale": 1.0
+  },
+  "agents": {
+    "DetectionAgent": {
+      "id": 0,
+      "preferred_actions": [
+        "block_ip",
+        "isolate_endpoint"
+      ],
+      "learning_rate": 0.001,
+      "epsilon": 0.1,
+      "network": {
+        "hidden_layers": [
+          256,
+          128
+        ],
+        "activation": "relu"
+      }
+    },
+    "ResponseAgent": {
+      "id": 1,
+      "preferred_actions": [
+        "update_firewall",
+        "reset_connection"
+      ],
+      "learning_rate": 0.001,
+      "epsilon": 0.1,
+      "network": {
+        "hidden_layers": [
+          256,
+          128
+        ],
+        "activation": "relu"
+      }
+    },
+    "AnalysisAgent": {
+      "id": 2,
+      "preferred_actions": [
+        "alert_admin",
+        "quarantine_file"
+      ],
+      "learning_rate": 0.001,
+      "epsilon": 0.1,
+      "network": {
+        "hidden_layers": [
+          256,
+          128
+        ],
+        "activation": "relu"
+      }
+    }
+  },
+  "training": {
+    "episodes": 1000,
+    "batch_size": 32,
+    "memory_size": 10000,
+    "target_update": 100,
+    "save_frequency": 100
+  }
+}

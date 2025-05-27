@@ -1,0 +1,22 @@
+{
+  "development": {
+    "debug": true,
+    "log_level": "DEBUG",
+    "data_samples": 10000,
+    "model_complexity": "simple"
+  },
+  "staging": {
+    "debug": false,
+    "log_level": "INFO",
+    "data_samples": 100000,
+    "model_complexity": "medium"
+  },
+  "production": {
+    "debug": false,
+    "log_level": "WARNING",
+    "data_samples": "full",
+    "model_complexity": "full",
+    "monitoring": true,
+    "alerts": true
+  }
+}

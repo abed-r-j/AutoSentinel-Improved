@@ -1,0 +1,36 @@
+{
+  "name": "CICIDS2017",
+  "description": "Canadian Institute for Cybersecurity Intrusion Detection System Dataset 2017",
+  "url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+  "features": [
+    "Destination Port",
+    "Flow Duration",
+    "Total Fwd Packets",
+    "Total Backward Packets",
+    "Total Length of Fwd Packets",
+    "Total Length of Bwd Packets",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Flow IAT Mean",
+    "Flow IAT Std",
+    "Fwd Packet Length Mean",
+    "Bwd Packet Length Mean",
+    "Packet Length Mean",
+    "Average Packet Size",
+    "SYN Flag Count",
+    "ACK Flag Count",
+    "FIN Flag Count",
+    "RST Flag Count",
+    "Label"
+  ],
+  "attack_types": [
+    "BENIGN",
+    "DDoS",
+    "PortScan",
+    "Bot",
+    "Infiltration",
+    "Web Attack - Brute Force",
+    "Web Attack - XSS",
+    "Web Attack - Sql Injection"
+  ]
+}

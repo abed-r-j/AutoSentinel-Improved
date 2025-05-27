@@ -1,0 +1,302 @@
+[
+  {
+    "episode": 0,
+    "avg_reward": 5.299999999999997,
+    "security_score": 0.9368421052631579,
+    "network_health": 0.953838552165079
+  },
+  {
+    "episode": 1,
+    "avg_reward": 5.233333333333331,
+    "security_score": 0.96,
+    "network_health": 0.9413841816445643
+  },
+  {
+    "episode": 2,
+    "avg_reward": 5.399999999999998,
+    "security_score": 0.9076923076923078,
+    "network_health": 0.9815927025619888
+  },
+  {
+    "episode": 3,
+    "avg_reward": 5.433333333333331,
+    "security_score": 0.9294117647058824,
+    "network_health": 0.9637117862435126
+  },
+  {
+    "episode": 4,
+    "avg_reward": 5.399999999999998,
+    "security_score": 0.8909090909090909,
+    "network_health": 0.9761940793281827
+  },
+  {
+    "episode": 5,
+    "avg_reward": 5.166666666666665,
+    "security_score": 1.0,
+    "network_health": 0.9518555463369269
+  },
+  {
+    "episode": 6,
+    "avg_reward": 5.63333333333333,
+    "security_score": 0.9000000000000001,
+    "network_health": 0.9684760687323315
+  },
+  {
+    "episode": 7,
+    "avg_reward": 6.066666666666663,
+    "security_score": 0.9368421052631579,
+    "network_health": 0.9792785312217596
+  },
+  {
+    "episode": 8,
+    "avg_reward": 5.4999999999999964,
+    "security_score": 0.9058823529411766,
+    "network_health": 0.9768729272949349
+  },
+  {
+    "episode": 9,
+    "avg_reward": 5.699999999999997,
+    "security_score": 0.9078260869565218,
+    "network_health": 0.822027819111606
+  },
+  {
+    "episode": 10,
+    "avg_reward": 5.233333333333331,
+    "security_score": 0.9272727272727272,
+    "network_health": 0.9006100976298204
+  },
+  {
+    "episode": 11,
+    "avg_reward": 5.466666666666664,
+    "security_score": 0.9090909090909092,
+    "network_health": 0.9646634359635708
+  },
+  {
+    "episode": 12,
+    "avg_reward": 6.199999999999995,
+    "security_score": 0.9389473684210528,
+    "network_health": 0.8952491235882748
+  },
+  {
+    "episode": 13,
+    "avg_reward": 6.099999999999998,
+    "security_score": 0.9384615384615385,
+    "network_health": 0.94044672824163
+  },
+  {
+    "episode": 14,
+    "avg_reward": 5.299999999999998,
+    "security_score": 0.9129411764705884,
+    "network_health": 0.8807003612230796
+  },
+  {
+    "episode": 15,
+    "avg_reward": 5.333333333333331,
+    "security_score": 0.9714285714285715,
+    "network_health": 0.945483217018935
+  },
+  {
+    "episode": 16,
+    "avg_reward": 6.166666666666664,
+    "security_score": 0.9166666666666667,
+    "network_health": 0.9391348046795859
+  },
+  {
+    "episode": 17,
+    "avg_reward": 5.433333333333331,
+    "security_score": 0.8956521739130434,
+    "network_health": 0.974804328072169
+  },
+  {
+    "episode": 18,
+    "avg_reward": 5.8333333333333295,
+    "security_score": 0.9272727272727272,
+    "network_health": 0.9836793746209759
+  },
+  {
+    "episode": 19,
+    "avg_reward": 5.799999999999997,
+    "security_score": 0.8799999999999999,
+    "network_health": 0.9002447754664095
+  },
+  {
+    "episode": 20,
+    "avg_reward": 5.666666666666662,
+    "security_score": 0.9578947368421054,
+    "network_health": 0.9695582246532135
+  },
+  {
+    "episode": 21,
+    "avg_reward": 5.43333333333333,
+    "security_score": 0.8838095238095238,
+    "network_health": 0.882137515881368
+  },
+  {
+    "episode": 22,
+    "avg_reward": 5.166666666666665,
+    "security_score": 0.885,
+    "network_health": 0.8820130138577426
+  },
+  {
+    "episode": 23,
+    "avg_reward": 5.499999999999997,
+    "security_score": 0.9272727272727272,
+    "network_health": 0.9330254280970133
+  },
+  {
+    "episode": 24,
+    "avg_reward": 5.533333333333329,
+    "security_score": 0.9200000000000002,
+    "network_health": 0.9900862315121148
+  },
+  {
+    "episode": 25,
+    "avg_reward": 5.733333333333332,
+    "security_score": 0.9272727272727272,
+    "network_health": 0.9157028913674854
+  },
+  {
+    "episode": 26,
+    "avg_reward": 5.099999999999999,
+    "security_score": 0.8894117647058823,
+    "network_health": 0.9011315316857497
+  },
+  {
+    "episode": 27,
+    "avg_reward": 5.999999999999997,
+    "security_score": 0.9636363636363636,
+    "network_health": 0.931827672937134
+  },
+  {
+    "episode": 28,
+    "avg_reward": 5.63333333333333,
+    "security_score": 0.9142857142857144,
+    "network_health": 0.9568177588463247
+  },
+  {
+    "episode": 29,
+    "avg_reward": 5.433333333333331,
+    "security_score": 0.9666666666666668,
+    "network_health": 0.9721217591369801
+  },
+  {
+    "episode": 30,
+    "avg_reward": 5.8,
+    "security_score": 0.9000000000000001,
+    "network_health": 0.9656657825113177
+  },
+  {
+    "episode": 31,
+    "avg_reward": 5.399999999999996,
+    "security_score": 0.9157894736842105,
+    "network_health": 0.9678679075136307
+  },
+  {
+    "episode": 32,
+    "avg_reward": 5.73333333333333,
+    "security_score": 0.96,
+    "network_health": 0.8931053167363963
+  },
+  {
+    "episode": 33,
+    "avg_reward": 5.399999999999996,
+    "security_score": 0.9000000000000001,
+    "network_health": 0.9283055387208092
+  },
+  {
+    "episode": 34,
+    "avg_reward": 5.833333333333331,
+    "security_score": 0.9058823529411766,
+    "network_health": 0.9501598811730732
+  },
+  {
+    "episode": 35,
+    "avg_reward": 5.199999999999998,
+    "security_score": 0.9692307692307693,
+    "network_health": 0.9488680318966127
+  },
+  {
+    "episode": 36,
+    "avg_reward": 5.43333333333333,
+    "security_score": 0.9028571428571428,
+    "network_health": 0.8743359679070718
+  },
+  {
+    "episode": 37,
+    "avg_reward": 7.23333333333333,
+    "security_score": 0.8533333333333333,
+    "network_health": 0.9907360291337284
+  },
+  {
+    "episode": 38,
+    "avg_reward": 5.33333333333333,
+    "security_score": 0.9333333333333333,
+    "network_health": 0.9834034008302066
+  },
+  {
+    "episode": 39,
+    "avg_reward": 5.566666666666663,
+    "security_score": 0.9636363636363636,
+    "network_health": 0.9586877353518659
+  },
+  {
+    "episode": 40,
+    "avg_reward": 5.133333333333332,
+    "security_score": 0.9333333333333333,
+    "network_health": 0.9495740804619004
+  },
+  {
+    "episode": 41,
+    "avg_reward": 5.9666666666666615,
+    "security_score": 0.8736842105263158,
+    "network_health": 0.9877218699551452
+  },
+  {
+    "episode": 42,
+    "avg_reward": 5.666666666666664,
+    "security_score": 0.9054545454545455,
+    "network_health": 0.9151721230913464
+  },
+  {
+    "episode": 43,
+    "avg_reward": 5.366666666666664,
+    "security_score": 0.9155555555555557,
+    "network_health": 0.8299646703680186
+  },
+  {
+    "episode": 44,
+    "avg_reward": 5.43333333333333,
+    "security_score": 0.9384615384615385,
+    "network_health": 0.9911878391875412
+  },
+  {
+    "episode": 45,
+    "avg_reward": 5.533333333333331,
+    "security_score": 0.9454545454545455,
+    "network_health": 0.9543280081091561
+  },
+  {
+    "episode": 46,
+    "avg_reward": 5.666666666666663,
+    "security_score": 0.9368421052631579,
+    "network_health": 0.9426000047047296
+  },
+  {
+    "episode": 47,
+    "avg_reward": 5.233333333333331,
+    "security_score": 0.9157894736842105,
+    "network_health": 0.9471913676022681
+  },
+  {
+    "episode": 48,
+    "avg_reward": 5.766666666666663,
+    "security_score": 0.8956521739130434,
+    "network_health": 0.9815603273657617
+  },
+  {
+    "episode": 49,
+    "avg_reward": 5.799999999999996,
+    "security_score": 0.925,
+    "network_health": 0.9698545665216155
+  }
+]

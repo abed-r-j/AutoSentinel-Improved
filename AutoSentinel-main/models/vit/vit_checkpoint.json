@@ -1,0 +1,10 @@
+{
+  "epoch": 0,
+  "train_accuracy": 0.13125,
+  "validation_accuracy": 0.145,
+  "num_classes": 8,
+  "image_size": 16,
+  "patch_size": 4,
+  "dim": 64,
+  "is_trained": true
+}
