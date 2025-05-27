@@ -100,14 +100,6 @@ Contributions are welcome! Please open issues or submit pull requests.
 
 ---
 
-## License
-
-[MIT License](LICENSE)
-
----
-
 **Contact**: For questions or support, please open an issue or contact [abed-r-j](https://github.com/abed-r-j).
 
 ---
-
-Let me know if you want to customize or expand any of these sections!
