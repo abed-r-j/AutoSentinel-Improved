@@ -1,7 +1,3 @@
-Here’s a structured README.md draft for your repository, based on your description and best practices. You can further expand sections as your project evolves.
-
----
-
 # AutoSentinel-Improved
 
 **Advanced Cybersecurity System with Improved Vision Transformer (50.9% accuracy), Multi-Agent Reinforcement Learning, and LLM Integration for Autonomous Threat Detection**
