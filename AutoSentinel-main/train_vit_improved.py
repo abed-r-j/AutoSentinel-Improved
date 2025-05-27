@@ -1,5 +1,5 @@
 """
-AutoSentinel Phase 3: Vision Transformer Training
+AutoSentinel Phase 3: Improved Vision Transformer Training
 Network traffic visualization classification for cybersecurity threat detection
 """
 
@@ -14,8 +14,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class SimpleViT:
-    """Simplified Vision Transformer implementation for network traffic classification"""
+class ImprovedViT:
+    """Improved Vision Transformer implementation with proper gradient descent"""
     
     def __init__(self, image_size=16, patch_size=4, num_classes=8, dim=64):
         self.image_size = image_size
@@ -24,12 +24,12 @@ class SimpleViT:
         self.dim = dim
         self.num_patches = (image_size // patch_size) ** 2
         
-        # Simple weight initialization
+        # Better weight initialization (Xavier/Glorot)
         self.patch_embedding = self._init_weights((patch_size * patch_size, dim))
         self.position_embedding = self._init_weights((self.num_patches + 1, dim))
         self.cls_token = self._init_weights((1, dim))
         
-        # Transformer layers (simplified)
+        # Transformer layers
         self.attention_weights = self._init_weights((dim, dim))
         self.mlp_weights = self._init_weights((dim, dim * 2))
         self.classifier = self._init_weights((dim, num_classes))
@@ -40,11 +40,14 @@ class SimpleViT:
         self.validation_accuracy = 0.0
         
     def _init_weights(self, shape):
-        """Initialize weights with small random values"""
+        """Initialize weights with Xavier initialization"""
         if len(shape) == 2:
-            return [[random.uniform(-0.1, 0.1) for _ in range(shape[1])] for _ in range(shape[0])]
+            # Xavier initialization
+            limit = math.sqrt(6.0 / (shape[0] + shape[1]))
+            return [[random.uniform(-limit, limit) for _ in range(shape[1])] for _ in range(shape[0])]
         else:
-            return [random.uniform(-0.1, 0.1) for _ in range(shape[0])]
+            limit = math.sqrt(6.0 / shape[0])
+            return [random.uniform(-limit, limit) for _ in range(shape[0])]
     
     def create_patches(self, image):
         """Convert image to patches for ViT processing"""
@@ -66,10 +69,10 @@ class SimpleViT:
         # Convert to patches
         patches = self.create_patches(image)
         
-        # Embed patches (simplified matrix multiplication)
+        # Embed patches
         embedded_patches = []
         for patch in patches:
-            embedded = [sum(patch[i] * self.patch_embedding[i][j] for i in range(len(patch)) if i < len(self.patch_embedding)) 
+            embedded = [sum(patch[i] * self.patch_embedding[i][j] for i in range(min(len(patch), len(self.patch_embedding)))) 
                        for j in range(self.dim)]
             embedded_patches.append(embedded)
         
@@ -84,7 +87,8 @@ class SimpleViT:
         cls_embedded = [self.cls_token[0][i] + self.position_embedding[0][i] 
                        for i in range(self.dim)]
         all_tokens = [cls_embedded] + embedded_patches
-          # Simple attention mechanism (using average of tokens)
+        
+        # Simple attention mechanism (using average of tokens)
         attended = [sum(token[i] for token in all_tokens) / len(all_tokens) 
                    for i in range(self.dim)]
         
@@ -92,11 +96,11 @@ class SimpleViT:
         logits = [sum(attended[i] * self.classifier[i][j] for i in range(len(attended))) 
                  for j in range(self.num_classes)]
         
-        return logits
+        return logits, attended
     
     def predict(self, image):
         """Predict class for a single image"""
-        logits = self.forward(image)
+        logits, _ = self.forward(image)
         return logits.index(max(logits))
     
     def softmax(self, logits):
@@ -111,7 +115,7 @@ class SimpleViT:
         # Avoid log(0) by adding small epsilon
         return -math.log(max(probs[target], 1e-15))
     
-    def train_epoch(self, train_data, learning_rate=0.001):
+    def train_epoch(self, train_data, learning_rate=0.01):
         """Train for one epoch with proper gradient descent"""
         correct = 0
         total = len(train_data)
@@ -119,7 +123,7 @@ class SimpleViT:
         
         for image, label in train_data:
             # Forward pass
-            logits = self.forward(image)
+            logits, attended = self.forward(image)
             predicted = logits.index(max(logits))
             
             if predicted == label:
@@ -132,28 +136,6 @@ class SimpleViT:
             # Proper gradient calculation for classifier weights
             probs = self.softmax(logits)
             
-            # Get attended features (simplified - recompute for gradient)
-            patches = self.create_patches(image)
-            embedded_patches = []
-            for patch in patches:
-                embedded = [sum(patch[i] * self.patch_embedding[i][j] for i in range(len(patch)) if i < len(self.patch_embedding)) 
-                           for j in range(self.dim)]
-                embedded_patches.append(embedded)
-            
-            # Add position embeddings
-            for i, patch in enumerate(embedded_patches):
-                if i < len(self.position_embedding):
-                    for j in range(len(patch)):
-                        if j < len(self.position_embedding[i]):
-                            patch[j] += self.position_embedding[i][j]
-            
-            cls_embedded = [self.cls_token[0][i] + self.position_embedding[0][i] 
-                           for i in range(self.dim)]
-            all_tokens = [cls_embedded] + embedded_patches
-            
-            attended = [sum(token[i] for token in all_tokens) / len(all_tokens) 
-                       for i in range(self.dim)]
-            
             # Gradient descent for classifier
             for i in range(len(self.classifier)):
                 for j in range(len(self.classifier[i])):
@@ -162,12 +144,15 @@ class SimpleViT:
                     self.classifier[i][j] -= learning_rate * gradient
             
             # Update patch embeddings with smaller learning rate
+            patches = self.create_patches(image)
             patch_lr = learning_rate * 0.1
-            for i in range(len(self.patch_embedding)):
-                for j in range(len(self.patch_embedding[i])):
-                    # Simple gradient approximation
-                    gradient = random.uniform(-0.001, 0.001) * (loss / 10.0)
-                    self.patch_embedding[i][j] -= patch_lr * gradient
+            for patch_idx, patch in enumerate(patches):
+                for i in range(min(len(patch), len(self.patch_embedding))):
+                    for j in range(len(self.patch_embedding[i])):
+                        # Simple gradient approximation based on loss
+                        error_signal = (probs[predicted] - (1.0 if predicted == label else 0.0))
+                        gradient = error_signal * patch[i] * 0.01
+                        self.patch_embedding[i][j] -= patch_lr * gradient
         
         accuracy = correct / total
         avg_loss = total_loss / total
@@ -186,8 +171,8 @@ class SimpleViT:
         accuracy = correct / total
         return accuracy
 
-class ViTTrainer:
-    """Vision Transformer trainer for network traffic classification"""
+class ImprovedViTTrainer:
+    """Improved Vision Transformer trainer with better training procedures"""
     
     def __init__(self, data_dir="data/visualizations", model_dir="models/vit"):
         self.data_dir = Path(data_dir)
@@ -213,11 +198,25 @@ class ViTTrainer:
         with open(vis_file, "r") as f:
             all_visualizations = json.load(f)
         
-        # Split data into train/validation (80/20 split)
-        random.shuffle(all_visualizations)
-        split_idx = int(0.8 * len(all_visualizations))
+        # Data augmentation: create more training samples
+        augmented_data = []
+        for item in all_visualizations:
+            # Original sample
+            augmented_data.append(item)
+            
+            # Add noise to create variations
+            for _ in range(2):  # 2 augmented versions per sample
+                noisy_grid = []
+                for row in item["grid"]:
+                    noisy_row = [max(0, min(1, val + random.uniform(-0.1, 0.1))) for val in row]
+                    noisy_grid.append(noisy_row)
+                augmented_data.append({"grid": noisy_grid, "label": item["label"]})
         
-        for i, item in enumerate(all_visualizations):
+        # Split data into train/validation (80/20 split)
+        random.shuffle(augmented_data)
+        split_idx = int(0.8 * len(augmented_data))
+        
+        for i, item in enumerate(augmented_data):
             image = item["grid"]
             label = item["label"]
             
@@ -229,9 +228,9 @@ class ViTTrainer:
         logger.info(f"Loaded {len(train_data)} training samples, {len(val_data)} validation samples")
         return train_data, val_data
     
-    def train_model(self, epochs=10, learning_rate=0.001):
-        """Train the ViT model"""
-        logger.info("Starting ViT training...")
+    def train_model(self, epochs=20, learning_rate=0.01):
+        """Train the improved ViT model"""
+        logger.info("Starting improved ViT training...")
         
         # Load data
         train_data, val_data = self.load_visualization_data()
@@ -241,29 +240,43 @@ class ViTTrainer:
             return None
         
         # Initialize model
-        model = SimpleViT(
+        model = ImprovedViT(
             image_size=16,
             patch_size=4,
             num_classes=self.num_classes,
             dim=64
         )
         
-        # Training loop
+        # Training loop with learning rate decay
         best_val_accuracy = 0.0
+        patience = 5
+        patience_counter = 0
+        
         for epoch in range(epochs):
+            # Adjust learning rate
+            current_lr = learning_rate * (0.9 ** (epoch // 5))
+            
             # Train
-            train_accuracy = model.train_epoch(train_data, learning_rate)
+            train_accuracy = model.train_epoch(train_data, current_lr)
             
             # Validate
             val_accuracy = model.evaluate(val_data) if val_data else 0.0
             
             logger.info(f"Epoch {epoch+1}/{epochs}: "
-                       f"Train Acc: {train_accuracy:.3f}, Val Acc: {val_accuracy:.3f}")
+                       f"Train Acc: {train_accuracy:.3f}, Val Acc: {val_accuracy:.3f}, LR: {current_lr:.4f}")
             
             # Save best model
             if val_accuracy > best_val_accuracy:
                 best_val_accuracy = val_accuracy
+                patience_counter = 0
                 self.save_model(model, epoch, train_accuracy, val_accuracy)
+            else:
+                patience_counter += 1
+            
+            # Early stopping
+            if patience_counter >= patience and epoch > 10:
+                logger.info(f"Early stopping at epoch {epoch+1}")
+                break
         
         model.is_trained = True
         model.training_accuracy = train_accuracy
@@ -282,7 +295,11 @@ class ViTTrainer:
             "image_size": model.image_size,
             "patch_size": model.patch_size,
             "dim": model.dim,
-            "is_trained": True
+            "is_trained": True,
+            "patch_embedding": model.patch_embedding,
+            "position_embedding": model.position_embedding,
+            "cls_token": model.cls_token,
+            "classifier": model.classifier
         }
         
         model_path = self.model_dir / "vit_checkpoint.json"
@@ -301,12 +318,19 @@ class ViTTrainer:
         with open(model_path, "r") as f:
             model_state = json.load(f)
         
-        model = SimpleViT(
+        model = ImprovedViT(
             image_size=model_state["image_size"],
             patch_size=model_state["patch_size"],
             num_classes=model_state["num_classes"],
             dim=model_state["dim"]
         )
+        
+        # Load weights if available
+        if "patch_embedding" in model_state:
+            model.patch_embedding = model_state["patch_embedding"]
+            model.position_embedding = model_state["position_embedding"]
+            model.cls_token = model_state["cls_token"]
+            model.classifier = model_state["classifier"]
         
         model.is_trained = model_state["is_trained"]
         model.training_accuracy = model_state["train_accuracy"]
@@ -317,8 +341,8 @@ class ViTTrainer:
 
 def main():
     """Main training function"""
-    print("AutoSentinel ViT Training - Phase 3")
-    print("=" * 50)
+    print("AutoSentinel Improved ViT Training - Phase 3")
+    print("=" * 55)
     
     # Check if visualization data exists
     if not Path("data/visualizations").exists():
@@ -327,13 +351,13 @@ def main():
         return
     
     # Initialize trainer
-    trainer = ViTTrainer()
+    trainer = ImprovedViTTrainer()
     
-    # Train model
-    model = trainer.train_model(epochs=5, learning_rate=0.001)
+    # Train model with better parameters
+    model = trainer.train_model(epochs=25, learning_rate=0.02)
     
     if model:
-        print(f"\nTraining Results:")
+        print(f"\nImproved Training Results:")
         print(f"Final Training Accuracy: {model.training_accuracy:.3f}")
         print(f"Final Validation Accuracy: {model.validation_accuracy:.3f}")
         print(f"Model saved to: models/vit/")
@@ -352,7 +376,7 @@ def main():
         
         print(f"Sample prediction: {label_name} (class {prediction})")
         
-        print("\nViT training phase complete!")
+        print("\nImproved ViT training phase complete!")
         print("Next: Run MARL training with 'python train_marl.py'")
 
 if __name__ == "__main__":

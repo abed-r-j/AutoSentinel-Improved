@@ -1,7 +1,7 @@
 {
   "agent_id": 2,
-  "total_reward": 265.29999999999285,
-  "q_table_size": 69,
+  "total_reward": 288.5999999999979,
+  "q_table_size": 87,
   "learning_rate": 0.1,
   "epsilon": 0.1,
   "discount": 0.95
